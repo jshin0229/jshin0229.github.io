@@ -1,0 +1,89 @@
+:root {
+  --bg: #fafaf9; --surface: #ffffff; --text: #1c1917; --muted: #78716c;
+  --border: #e7e5e4; --accent: #2563eb; --accent-text: #ffffff;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0c0a09; --surface: #1c1917; --text: #f5f5f4; --muted: #a8a29e;
+    --border: #292524; --accent: #60a5fa; --accent-text: #0c0a09;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0c0a09; --surface: #1c1917; --text: #f5f5f4; --muted: #a8a29e;
+  --border: #292524; --accent: #60a5fa; --accent-text: #0c0a09;
+}
+
+* { box-sizing: border-box; margin: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg); color: var(--text);
+  font: 17px/1.65 Inter, system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; }
+.wrap { max-width: 960px; margin: 0 auto; padding: 0 24px; }
+.muted { color: var(--muted); }
+
+.nav {
+  position: sticky; top: 0; z-index: 10;
+  background: color-mix(in srgb, var(--bg) 85%, transparent);
+  backdrop-filter: blur(8px); border-bottom: 1px solid var(--border);
+}
+.nav-inner { display: flex; align-items: center; justify-content: space-between; height: 60px; }
+.logo { font-family: "JetBrains Mono", monospace; font-weight: 500; text-decoration: none; }
+.logo span { color: var(--accent); }
+nav { display: flex; align-items: center; gap: 20px; }
+nav a { text-decoration: none; color: var(--muted); font-size: 15px; }
+nav a:hover { color: var(--text); }
+#theme {
+  background: none; border: 1px solid var(--border); color: var(--text);
+  border-radius: 8px; width: 34px; height: 34px; cursor: pointer; font-size: 16px;
+}
+
+.hero { padding: 120px 24px 100px; }
+.kicker { font-family: "JetBrains Mono", monospace; color: var(--accent); font-size: 15px; }
+h1 { font-size: clamp(44px, 9vw, 80px); line-height: 1.05; letter-spacing: -0.03em; margin: 8px 0 16px; }
+.tagline { font-size: clamp(19px, 2.6vw, 23px); max-width: 600px; }
+.cta { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
+.btn {
+  display: inline-block; padding: 11px 20px; border-radius: 10px; text-decoration: none;
+  border: 1px solid var(--border); font-weight: 500; font-size: 15px;
+  transition: transform .15s, border-color .15s;
+}
+.btn:hover { transform: translateY(-2px); border-color: var(--accent); }
+.btn.primary { background: var(--accent); color: var(--accent-text); border-color: var(--accent); }
+
+.section { padding: 72px 24px; border-top: 1px solid var(--border); }
+h2 { font-size: 28px; letter-spacing: -0.02em; margin-bottom: 28px; }
+.num { font-family: "JetBrains Mono", monospace; color: var(--accent); font-size: 16px; font-weight: 400; margin-right: 8px; }
+.about-grid { display: grid; grid-template-columns: 3fr 2fr; gap: 48px; }
+.about-grid p + p { margin-top: 16px; }
+.skills { list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; align-content: start; }
+.skills li {
+  font-family: "JetBrains Mono", monospace; font-size: 13px;
+  padding: 6px 12px; border: 1px solid var(--border); border-radius: 999px; background: var(--surface);
+}
+
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 20px; }
+.card {
+  background: var(--surface); border: 1px solid var(--border); border-radius: 14px;
+  padding: 24px; display: flex; flex-direction: column; gap: 10px;
+  transition: transform .15s, border-color .15s;
+}
+.card:hover { transform: translateY(-3px); border-color: var(--accent); }
+.card h3 { font-size: 19px; }
+.card p { color: var(--muted); font-size: 15px; }
+.tags { font-family: "JetBrains Mono", monospace; font-size: 12px !important; }
+.links { margin-top: auto; }
+.links a { color: var(--accent); text-decoration: none; font-weight: 500; font-size: 15px; }
+
+.contact p { max-width: 520px; }
+.footer { padding: 40px 24px; color: var(--muted); font-size: 14px; border-top: 1px solid var(--border); }
+
+@media (max-width: 640px) {
+  .wrap { padding: 0 16px; }
+  .hero { padding: 72px 16px 64px; }
+  .section { padding: 56px 16px; }
+  .about-grid { grid-template-columns: 1fr; gap: 28px; }
+  nav { gap: 14px; }
+}

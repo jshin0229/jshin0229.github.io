@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>J. Shin</title>
+  <meta name="description" content="Portfolio of J. Shin — projects, about, and contact.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="nav">
+    <div class="wrap nav-inner">
+      <a href="#top" class="logo">jshin<span>.</span></a>
+      <nav>
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+        <button id="theme" aria-label="Toggle dark mode">◐</button>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <!-- HERO: edit your name and tagline here -->
+    <section class="hero wrap">
+      <p class="kicker">Hi, I'm</p>
+      <h1>J. Shin</h1>
+      <p class="tagline">I build things for the web. <span class="muted">(Replace this with your one-line tagline.)</span></p>
+      <div class="cta">
+        <a class="btn primary" href="#projects">See my work</a>
+        <a class="btn" href="#contact">Get in touch</a>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" class="wrap section">
+      <h2><span class="num">01</span> About</h2>
+      <div class="about-grid">
+        <div>
+          <p>Write two to four sentences about yourself here: what you do, what you're interested in, and what you're working toward.</p>
+          <p>You can add a second paragraph about your background, school, or what you're looking for (internships, freelance work, collaborations).</p>
+        </div>
+        <ul class="skills">
+          <li>HTML &amp; CSS</li>
+          <li>JavaScript</li>
+          <li>Python</li>
+          <li>Git &amp; GitHub</li>
+          <li>Design</li>
+          <li>Skill six</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- PROJECTS: copy a <article class="card"> block to add more -->
+    <section id="projects" class="wrap section">
+      <h2><span class="num">02</span> Projects</h2>
+      <div class="grid">
+        <article class="card">
+          <h3>Project One</h3>
+          <p>A short description of what this project does and why you built it.</p>
+          <p class="tags">JavaScript · CSS</p>
+          <div class="links"><a href="https://github.com/jshin0229">Code ↗</a></div>
+        </article>
+        <article class="card">
+          <h3>Project Two</h3>
+          <p>A short description of what this project does and why you built it.</p>
+          <p class="tags">Python</p>
+          <div class="links"><a href="https://github.com/jshin0229">Code ↗</a></div>
+        </article>
+        <article class="card">
+          <h3>Project Three</h3>
+          <p>A short description of what this project does and why you built it.</p>
+          <p class="tags">HTML · Design</p>
+          <div class="links"><a href="https://github.com/jshin0229">Code ↗</a></div>
+        </article>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="wrap section contact">
+      <h2><span class="num">03</span> Contact</h2>
+      <p>Want to work together or just say hi? My inbox is open.</p>
+      <div class="cta">
+        <a class="btn primary" href="mailto:you@example.com">Email me</a>
+        <a class="btn" href="https://github.com/jshin0229">GitHub</a>
+        <a class="btn" href="https://www.linkedin.com/">LinkedIn</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="wrap footer">
+    <p>© <span id="year"></span> J. Shin · Built with plain HTML &amp; CSS</p>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+    const root = document.documentElement, btn = document.getElementById('theme');
+    try { const t = localStorage.getItem('theme'); if (t) root.dataset.theme = t; } catch (e) {}
+    btn.addEventListener('click', () => {
+      const dark = root.dataset.theme ? root.dataset.theme === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches;
+      root.dataset.theme = dark ? 'light' : 'dark';
+      try { localStorage.setItem('theme', root.dataset.theme); } catch (e) {}
+    });
+  </script>
+</body>
+</html>
