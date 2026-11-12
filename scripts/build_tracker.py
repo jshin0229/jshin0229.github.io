@@ -29,9 +29,29 @@ def r(x, n=4):
     return None if x is None or (isinstance(x, float) and np.isnan(x)) else round(float(x), n)
 
 
-def download():
-    px = yf.download(TICKERS, start="2004-01-01", auto_adjust=True, progress=False)["Close"]
-    return px.dropna(how="all")
+def download(retries=3):
+    """Download prices one request at a time (yfinance's threaded mode can lock its cache
+    and silently drop tickers), retrying any ticker that comes back empty."""
+    import tempfile, time
+    yf.set_tz_cache_location(tempfile.mkdtemp())
+    frames, missing = {}, list(TICKERS)
+    for attempt in range(retries):
+        if not missing:
+            break
+        df = yf.download(missing, start="2004-01-01", auto_adjust=True, progress=False, threads=False)["Close"]
+        if isinstance(df, pd.Series):
+            df = df.to_frame(missing[0])
+        for t in missing:
+            if t in df and df[t].notna().sum() > 0:
+                frames[t] = df[t]
+        missing = [t for t in TICKERS if t not in frames]
+        if missing:
+            print(f"Retrying {missing} (attempt {attempt + 2})")
+            time.sleep(5 * (attempt + 1))
+    if missing:
+        # Fail loudly so the workflow keeps yesterday's data instead of publishing broken numbers
+        raise SystemExit(f"Could not download: {missing}")
+    return pd.DataFrame(frames).dropna(how="all")
 
 
 # ---------- signal-backtester: SPY trend ----------
