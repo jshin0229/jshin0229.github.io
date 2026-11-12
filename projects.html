@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Projects · Drake Shin</title>
+  <meta name="description" content="Quant finance and data analysis projects by Drake (Jongyun) Shin.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script>document.documentElement.classList.add('js')</script>
+</head>
+<body>
+  <div class="progress" aria-hidden="true"></div>
+  <div class="blob b1" aria-hidden="true"></div>
+  <div class="blob b2" aria-hidden="true"></div>
+  <header class="nav">
+    <div class="wrap nav-inner">
+      <a href="index.html" class="logo">jshin<span>.</span></a>
+      <nav>
+        <a href="about.html">About</a>
+        <a href="projects.html">Projects</a>
+        <a href="travel.html">Travel</a>
+        <a href="tracker.html" class="live"><span class="dot" aria-hidden="true"></span>Live Tracker</a>
+      </nav>
+      <div class="nav-tools">
+        <button id="theme" aria-label="Toggle dark mode">◐</button>
+        <button id="menu" aria-label="Open menu">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="page-head wrap">
+      <p class="kicker intro" style="--d:0">Projects</p>
+      <h1 class="intro page-title" style="--d:1"><span class="split">Things I've built</span></h1>
+      <p class="tagline intro" style="--d:2">Quant finance tools and data analyses, all in Python. Each one links to its code and write-up.</p>
+    </section>
+    <section class="wrap section">
+      <div class="filters" role="group" aria-label="Filter projects">
+        <button class="chip active" data-filter="all">All <span>6</span></button>
+        <button class="chip" data-filter="quant">Quant finance <span>3</span></button>
+        <button class="chip" data-filter="data">Data analysis <span>3</span></button>
+      </div>
+      <div class="grid" id="project-grid" data-reveal="stagger">
+        <article class="card" data-kind="quant">
+          <p class="kind">Quant finance</p>
+          <h3>Signal Backtester</h3>
+          <p>A from-scratch Python backtesting engine with no look-ahead bias, transaction costs and risk metrics. A 50/200-day trend filter on SPY cut the worst drawdown from -55% to -34%.</p>
+          <p class="tags">Python · pandas · pytest</p>
+          <div class="links"><a href="https://github.com/jshin0229/signal-backtester">Code ↗</a><a href="tracker.html">Live signals →</a></div>
+        </article>
+        <article class="card" data-kind="quant">
+          <p class="kind">Quant finance</p>
+          <h3>Systematic Strategy Research</h3>
+          <p>Four classic quant strategies implemented and tested on 20 years of ETF data. Time-series momentum matched the S&amp;P 500's return with a Sharpe of 0.92 and a third of its drawdown.</p>
+          <p class="tags">pandas · Jupyter · research</p>
+          <div class="links"><a href="https://github.com/jshin0229/systematic-strategy-research">Code ↗</a><a href="tracker.html">Live signals →</a></div>
+        </article>
+        <article class="card" data-kind="quant">
+          <p class="kind">Quant finance</p>
+          <h3>Portfolio Risk Report</h3>
+          <p>Turns any list of holdings into a one-page HTML risk report: VaR, beta, risk contribution, stress tests and Monte Carlo outcomes.</p>
+          <p class="tags">Python · risk · Monte Carlo</p>
+          <div class="links"><a href="https://github.com/jshin0229/portfolio-risk-report">Code ↗</a><a href="https://jshin0229.github.io/portfolio-risk-report/">Live demo ↗</a><a href="tracker.html">Live signals →</a></div>
+        </article>
+        <article class="card" data-kind="data">
+          <p class="kind">Data analysis</p>
+          <h3>F1 Race Analytics</h3>
+          <p>73 seasons of Formula 1 data. Since 2000, pole position wins 50% of races, and retirement rates fell from over 50% to 16%.</p>
+          <p class="tags">pandas · data viz</p>
+          <div class="links"><a href="https://github.com/jshin0229/f1-race-analytics">Code ↗</a></div>
+        </article>
+        <article class="card" data-kind="data">
+          <p class="kind">Data analysis</p>
+          <h3>CO₂ Emissions Trends</h3>
+          <p>How the top 10 emitters changed from 1960 to 2019: who has peaked, who is still growing, and a Soviet-era data trap I had to fix.</p>
+          <p class="tags">pandas · time series</p>
+          <div class="links"><a href="https://github.com/jshin0229/co2-emissions-trends">Code ↗</a></div>
+        </article>
+        <article class="card" data-kind="data">
+          <p class="kind">Data analysis</p>
+          <h3>Yelp Review Text Analysis</h3>
+          <p>What makes 20,000 reviews negative? Log-odds word analysis, trigrams and a classifier that catches 90% of negative reviews.</p>
+          <p class="tags">NLP · scikit-learn</p>
+          <div class="links"><a href="https://github.com/jshin0229/yelp-review-text-analysis">Code ↗</a></div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="wrap footer">
+    <p>© <span id="year"></span> Drake (Jongyun) Shin</p>
+    <p class="footer-links"><a href="mailto:jshin0229@gmail.com">Email</a> · <a href="https://github.com/jshin0229">GitHub</a> · <a href="https://www.linkedin.com/in/drake-shin">LinkedIn</a></p>
+  </footer>
+  <script src="site.js"></script>
+  <script>
+    document.querySelectorAll('.chip').forEach(chip => chip.addEventListener('click', () => {
+      document.querySelectorAll('.chip').forEach(c => c.classList.toggle('active', c === chip));
+      const f = chip.dataset.filter;
+      document.querySelectorAll('#project-grid .card').forEach(c => c.hidden = !(f === 'all' || c.dataset.kind === f));
+    }));
+  </script>
+</body>
+</html>

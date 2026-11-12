@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Drake (Jongyun) Shin</title>
-  <meta name="description" content="Drake (Jongyun) Shin: quantitative finance and data analysis projects.">
+  <meta name="description" content="Drake (Jongyun) Shin: finance and data science student at Emory Goizueta, with quant finance and data analysis projects.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -17,172 +17,97 @@
   <div class="blob b2" aria-hidden="true"></div>
   <header class="nav">
     <div class="wrap nav-inner">
-      <a href="#top" class="logo">jshin<span>.</span></a>
+      <a href="index.html" class="logo">jshin<span>.</span></a>
       <nav>
-        <a href="#about">About</a>
-        <a href="#projects">Projects</a>
-        <a href="#contact">Contact</a>
-        <button id="theme" aria-label="Toggle dark mode">◐</button>
+        <a href="about.html">About</a>
+        <a href="projects.html">Projects</a>
+        <a href="travel.html">Travel</a>
+        <a href="tracker.html" class="live"><span class="dot" aria-hidden="true"></span>Live Tracker</a>
       </nav>
+      <div class="nav-tools">
+        <button id="theme" aria-label="Toggle dark mode">◐</button>
+        <button id="menu" aria-label="Open menu">☰</button>
+      </div>
     </div>
   </header>
 
   <main id="top">
-    <!-- HERO: edit your name and tagline here -->
     <section class="hero wrap">
       <p class="kicker intro" style="--d:0">Hi, I'm</p>
       <h1 class="intro" style="--d:1"><span class="split">Drake Shin</span></h1>
-      <p class="tagline intro" style="--d:2">Jongyun Shin · Emory University. I use Python and statistics to study markets and data.</p>
+      <p class="tagline intro" style="--d:2">Finance &amp; Data Science at Emory's Goizueta Business School. Research Analyst at Forte Capital Group. I use Python and statistics to study markets.</p>
       <div class="cta intro" style="--d:3">
-        <a class="btn primary" href="#projects">See my work</a>
-        <a class="btn" href="#contact">Get in touch</a>
+        <a class="btn primary" href="projects.html">See my work</a>
+        <a class="btn" href="tracker.html"><span class="dot" aria-hidden="true"></span>Live strategy tracker</a>
       </div>
     </section>
 
-    <!-- ABOUT -->
-    <section id="about" class="wrap section">
-      <h2 data-reveal><span class="num">01</span> About</h2>
-      <div class="about-grid">
-        <div data-reveal="left">
-          <p>As a Research Analyst at Forte Capital Group, I contribute to market research and financial analysis to support investment decisions. In prior roles, 
-            I worked as an Equity Research Extern, where I analyzed Amneal Pharmaceuticals' financials, developed a comprehensive valuation model, and delivered a 
-            buy recommendation with a detailed price target. Currently pursuing a Bachelor of Business Administration in Finance at Emory University's Goizueta Business School 
-            with a secondary major in Data Science, I leverage skills in financial modeling, research, and business communication. I have experience studying and using SQL, 
-            Python, R, Excel, and Tableau to solve real-life business problems and analyze data sets. I have lived in Korea, China, Germany, Turkey, and the US. Constantly 
-            adapting to new systems taught me to stay comfortable with ambiguity, pick up context fast, and see problems from more than one vantage point, which is a large part of 
-            why I’m drawn to global finance and infrastructure, where the interesting work happens at the intersection of markets, policy, and borders. </p>
-          <p>My projects range from backtesting engines and portfolio risk tools to statistical analyses of sports, climate and text data, all built in Python.</p>
-        </div>
-        <ul class="skills" data-reveal="stagger">
-          <li>Python</li>
-          <li>R</li>
-          <li>SQL</li>
-          <li>Modeling</li>
-          <li>Statistics</li>
-          <li>Corporate Finance & Investments<li>
-          <li>Git &amp; GitHub</li>
-        </ul>
+    <section class="wrap section">
+      <h2 data-reveal><span class="num">01</span> Today's signals</h2>
+      <p class="lede" data-reveal>My trading strategies, re-run on fresh market data every weekday after the close.</p>
+      <div class="tiles" id="home-tiles" data-reveal="stagger">
+        <div class="tile skeleton"></div><div class="tile skeleton"></div><div class="tile skeleton"></div><div class="tile skeleton"></div>
       </div>
+      <p class="more" data-reveal><a href="tracker.html">Open the full tracker →</a></p>
     </section>
 
-    <!-- PROJECTS: copy a <article class="card"> block to add more -->
-    <section id="projects" class="wrap section">
-      <h2 data-reveal><span class="num">02</span> Projects</h2>
+    <section class="wrap section">
+      <h2 data-reveal><span class="num">02</span> Featured projects</h2>
       <div class="grid" data-reveal="stagger">
-        <article class="card">
+        <article class="card" data-kind="quant">
           <p class="kind">Quant finance</p>
           <h3>Signal Backtester</h3>
           <p>A from-scratch Python backtesting engine with no look-ahead bias, transaction costs and risk metrics. A 50/200-day trend filter on SPY cut the worst drawdown from -55% to -34%.</p>
           <p class="tags">Python · pandas · pytest</p>
-          <div class="links"><a href="https://github.com/jshin0229/signal-backtester">Code ↗</a></div>
+          <div class="links"><a href="https://github.com/jshin0229/signal-backtester">Code ↗</a><a href="tracker.html">Live signals →</a></div>
         </article>
-        <article class="card">
+        <article class="card" data-kind="quant">
           <p class="kind">Quant finance</p>
           <h3>Systematic Strategy Research</h3>
           <p>Four classic quant strategies implemented and tested on 20 years of ETF data. Time-series momentum matched the S&amp;P 500's return with a Sharpe of 0.92 and a third of its drawdown.</p>
           <p class="tags">pandas · Jupyter · research</p>
-          <div class="links"><a href="https://github.com/jshin0229/systematic-strategy-research">Code ↗</a></div>
+          <div class="links"><a href="https://github.com/jshin0229/systematic-strategy-research">Code ↗</a><a href="tracker.html">Live signals →</a></div>
         </article>
-        <article class="card">
+        <article class="card" data-kind="quant">
           <p class="kind">Quant finance</p>
           <h3>Portfolio Risk Report</h3>
           <p>Turns any list of holdings into a one-page HTML risk report: VaR, beta, risk contribution, stress tests and Monte Carlo outcomes.</p>
           <p class="tags">Python · risk · Monte Carlo</p>
-          <div class="links"><a href="https://github.com/jshin0229/portfolio-risk-report">Code ↗</a> <a href="https://jshin0229.github.io/portfolio-risk-report/">Live demo ↗</a></div>
-        </article>
-        <article class="card">
-          <p class="kind">Data analysis</p>
-          <h3>F1 Race Analytics</h3>
-          <p>73 seasons of Formula 1 data. Since 2000, pole position wins 50% of races, and retirement rates fell from over 50% to 16%.</p>
-          <p class="tags">pandas · data viz</p>
-          <div class="links"><a href="https://github.com/jshin0229/f1-race-analytics">Code ↗</a></div>
-        </article>
-        <article class="card">
-          <p class="kind">Data analysis</p>
-          <h3>CO₂ Emissions Trends</h3>
-          <p>How the top 10 emitters changed from 1960 to 2019: who has peaked, who is still growing, and a Soviet-era data trap I had to fix.</p>
-          <p class="tags">pandas · time series</p>
-          <div class="links"><a href="https://github.com/jshin0229/co2-emissions-trends">Code ↗</a></div>
-        </article>
-        <article class="card">
-          <p class="kind">Data analysis</p>
-          <h3>Yelp Review Text Analysis</h3>
-          <p>What makes 20,000 reviews negative? Log-odds word analysis, trigrams and a classifier that catches 90% of negative reviews.</p>
-          <p class="tags">NLP · scikit-learn</p>
-          <div class="links"><a href="https://github.com/jshin0229/yelp-review-text-analysis">Code ↗</a></div>
+          <div class="links"><a href="https://github.com/jshin0229/portfolio-risk-report">Code ↗</a><a href="https://jshin0229.github.io/portfolio-risk-report/">Live demo ↗</a><a href="tracker.html">Live signals →</a></div>
         </article>
       </div>
+      <p class="more" data-reveal><a href="projects.html">All projects →</a></p>
     </section>
 
-    <!-- CONTACT -->
-    <section id="contact" class="wrap section contact">
-      <h2 data-reveal><span class="num">03</span> Contact</h2>
-      <p data-reveal>Want to work together or just say hi? My inbox is open.</p>
-      <div class="cta" data-reveal="stagger">
-        <a class="btn primary" href="mailto:jshin0229@gmail.com">Email me</a>
-        <a class="btn" href="https://github.com/jshin0229">GitHub</a>
-        <a class="btn" href="https://www.linkedin.com/drake-shin">LinkedIn</a>
+    <section class="wrap section">
+      <h2 data-reveal><span class="num">03</span> Explore</h2>
+      <div class="explore" data-reveal="stagger">
+        <a class="explore-card" href="about.html"><span class="ex-kicker">About</span><strong>Background &amp; experience</strong><span>Goizueta, Forte Capital Group, equity research, and five countries lived in.</span></a>
+        <a class="explore-card" href="travel.html"><span class="ex-kicker">Travel</span><strong>Places I've lived &amp; visited</strong><span>Korea, China, Germany, Turkey and the US, on a map.</span></a>
+        <a class="explore-card" href="mailto:jshin0229@gmail.com"><span class="ex-kicker">Contact</span><strong>Get in touch</strong><span>Open to conversations about finance, data and markets.</span></a>
       </div>
     </section>
   </main>
 
   <footer class="wrap footer">
-    <p>© <span id="year"></span> Drake (Jongyun) Shin · Built with plain HTML &amp; CSS</p>
+    <p>© <span id="year"></span> Drake (Jongyun) Shin</p>
+    <p class="footer-links"><a href="mailto:jshin0229@gmail.com">Email</a> · <a href="https://github.com/jshin0229">GitHub</a> · <a href="https://www.linkedin.com/in/drake-shin">LinkedIn</a></p>
   </footer>
-
+  <script src="site.js"></script>
   <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
-    const root = document.documentElement, btn = document.getElementById('theme');
-    try { const t = localStorage.getItem('theme'); if (t) root.dataset.theme = t; } catch (e) {}
-    btn.addEventListener('click', () => {
-      const dark = root.dataset.theme ? root.dataset.theme === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches;
-      root.dataset.theme = dark ? 'light' : 'dark';
-      try { localStorage.setItem('theme', root.dataset.theme); } catch (e) {}
-    });
-    // Split the big name into letters so they can animate one by one
-    document.querySelectorAll('.split').forEach(el => {
-      const text = el.textContent; el.textContent = ''; el.setAttribute('aria-label', text);
-      [...text].forEach((ch, i) => {
-        const s = document.createElement('span');
-        s.className = 'ch'; s.setAttribute('aria-hidden', 'true');
-        s.style.setProperty('--i', i); s.textContent = ch === ' ' ? '\u00a0' : ch;
-        el.appendChild(s);
-      });
-    });
-
-    // Give children of stagger groups an index for delayed animation
-    document.querySelectorAll('[data-reveal="stagger"]').forEach(g =>
-      [...g.children].forEach((c, i) => c.style.setProperty('--i', i)));
-
-    // Animate elements in when they enter the screen and back out when they leave
-    // (works scrolling both down and up)
-    const io = new IntersectionObserver(entries => entries.forEach(e => {
-      e.target.classList.toggle('in', e.isIntersecting);
-      if (!e.isIntersecting) e.target.classList.toggle('above', e.boundingClientRect.top < 0);
-    }), { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
-    document.querySelectorAll('[data-reveal]').forEach(el => io.observe(el));
-
-    // Scroll progress bar + background parallax
-    const bar = document.querySelector('.progress');
-    const onScroll = () => {
-      const max = document.documentElement.scrollHeight - innerHeight;
-      bar.style.transform = `scaleX(${max > 0 ? scrollY / max : 0})`;
-      root.style.setProperty('--scroll', scrollY);
-    };
-    addEventListener('scroll', onScroll, { passive: true }); onScroll();
-
-    // 3D tilt on project cards following the mouse
-    if (matchMedia('(hover: hover) and (prefers-reduced-motion: no-preference)').matches) {
-      document.querySelectorAll('.card').forEach(card => {
-        card.addEventListener('pointermove', e => {
-          const r = card.getBoundingClientRect();
-          const x = (e.clientX - r.left) / r.width - 0.5, y = (e.clientY - r.top) / r.height - 0.5;
-          card.style.setProperty('--rx', `${-y * 10}deg`); card.style.setProperty('--ry', `${x * 10}deg`);
-          card.style.setProperty('--mx', `${(x + 0.5) * 100}%`); card.style.setProperty('--my', `${(y + 0.5) * 100}%`);
-        });
-        card.addEventListener('pointerleave', () => { card.style.setProperty('--rx', '0deg'); card.style.setProperty('--ry', '0deg'); });
-      });
-    }
+    loadTracker().then(d => {
+      const p = d.strategies.positions, t = d.spy_trend, s = d.strategies.stats;
+      const tiles = [
+        ['SPY trend signal', t.signal === 'LONG' ? 'Long SPY' : 'In cash', `50-day avg ${t.sma50 > t.sma200 ? 'above' : 'below'} 200-day since ${t.since}`, t.signal === 'LONG' ? 'up' : 'down'],
+        ['Time-series momentum', p.ts_momentum.holding, `SPY 12-month return ${fmtPct(p.ts_momentum.spy_12_1, 1, true)}`, p.ts_momentum.holding === 'SPY' ? 'up' : 'down'],
+        ['Dual momentum', p.dual_momentum.holding, `SPY ${fmtPct(p.dual_momentum.spy_12m, 1, true)} vs EFA ${fmtPct(p.dual_momentum.efa_12m, 1, true)} (12m)`, ''],
+        ['Best strategy this year', ...(() => { const [n, v] = Object.entries(s).filter(([n]) => n !== 'S&P 500' && n !== '60/40').sort((a, b) => b[1].ytd - a[1].ytd)[0]; return [n, `${fmtPct(v.ytd, 1, true)} year to date`, 'up']; })()],
+      ];
+      document.getElementById('home-tiles').innerHTML = tiles.map(([k, v, sub, cls]) =>
+        `<div class="tile"><p class="tile-k">${k}</p><p class="tile-v ${cls}">${v}</p><p class="tile-sub">${sub}</p></div>`).join('');
+      setupReveal(document.getElementById('home-tiles').parentElement);
+      document.getElementById('home-tiles').classList.add('in');
+    }).catch(() => { document.getElementById('home-tiles').innerHTML = '<p class="muted">Live data is temporarily unavailable.</p>'; });
   </script>
 </body>
 </html>

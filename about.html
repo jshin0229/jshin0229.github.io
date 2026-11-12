@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>About · Drake Shin</title>
+  <meta name="description" content="About Drake (Jongyun) Shin: background, experience and contact.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script>document.documentElement.classList.add('js')</script>
+</head>
+<body>
+  <div class="progress" aria-hidden="true"></div>
+  <div class="blob b1" aria-hidden="true"></div>
+  <div class="blob b2" aria-hidden="true"></div>
+  <header class="nav">
+    <div class="wrap nav-inner">
+      <a href="index.html" class="logo">jshin<span>.</span></a>
+      <nav>
+        <a href="about.html">About</a>
+        <a href="projects.html">Projects</a>
+        <a href="travel.html">Travel</a>
+        <a href="tracker.html" class="live"><span class="dot" aria-hidden="true"></span>Live Tracker</a>
+      </nav>
+      <div class="nav-tools">
+        <button id="theme" aria-label="Toggle dark mode">◐</button>
+        <button id="menu" aria-label="Open menu">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="page-head wrap">
+      <p class="kicker intro" style="--d:0">About</p>
+      <h1 class="intro page-title" style="--d:1"><span class="split">Drake (Jongyun) Shin</span></h1>
+      <p class="tagline intro" style="--d:2">Finance &amp; Data Science · Emory University, Goizueta Business School</p>
+    </section>
+
+    <section class="wrap section">
+      <h2 data-reveal><span class="num">01</span> Who I am</h2>
+      <div class="about-grid">
+        <div class="prose" data-reveal="left">
+          <p>As a Research Analyst at Forte Capital Group, I contribute to market research and financial analysis to support investment decisions. In prior roles, I worked as an Equity Research Extern, where I analyzed Amneal Pharmaceuticals' financials, developed a comprehensive valuation model, and delivered a buy recommendation with a detailed price target.</p>
+          <p>Currently pursuing a Bachelor of Business Administration in Finance at Emory University's Goizueta Business School with a secondary major in Data Science, I leverage skills in financial modeling, research, and business communication. I have experience studying and using SQL, Python, R, Excel, and Tableau to solve real-life business problems and analyze data sets.</p>
+          <p>I have lived in Korea, China, Germany, Turkey, and the US. Constantly adapting to new systems taught me to stay comfortable with ambiguity, pick up context fast, and see problems from more than one vantage point, which is a large part of why I’m drawn to global finance and infrastructure, where the interesting work happens at the intersection of markets, policy, and borders.</p>
+          <p>My projects range from backtesting engines and portfolio risk tools to statistical analyses of sports, climate and text data, all built in Python.</p>
+        </div>
+        <ul class="skills" data-reveal="stagger">
+          <li>Python</li>
+          <li>R</li>
+          <li>SQL</li>
+          <li>Excel</li>
+          <li>Tableau</li>
+          <li>Modeling</li>
+          <li>Statistics</li>
+          <li>Corporate Finance &amp; Investments</li>
+          <li>Git &amp; GitHub</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="wrap section">
+      <h2 data-reveal><span class="num">02</span> Experience</h2>
+      <ol class="timeline" data-reveal="stagger">
+        <li><p class="tl-when">Current</p><h3>Research Analyst · Forte Capital Group</h3><p>Market research and financial analysis to support investment decisions.</p></li>
+        <li><p class="tl-when">Previously</p><h3>Equity Research Extern</h3><p>Analyzed Amneal Pharmaceuticals' financials, built a valuation model, and delivered a buy recommendation with a price target.</p></li>
+        <li><p class="tl-when">Education</p><h3>Emory University · Goizueta Business School</h3><p>BBA in Finance, secondary major in Data Science.</p></li>
+      </ol>
+    </section>
+
+    <section class="wrap section">
+      <h2 data-reveal><span class="num">03</span> Places I've called home</h2>
+      <div class="flags" data-reveal="stagger">
+        <span>🇰🇷 Korea</span><span>🇨🇳 China</span><span>🇩🇪 Germany</span><span>🇹🇷 Turkey</span><span>🇺🇸 United States</span>
+      </div>
+      <p class="more" data-reveal><a href="travel.html">See them on the map →</a></p>
+    </section>
+
+    <section id="contact" class="wrap section contact">
+      <h2 data-reveal><span class="num">04</span> Contact</h2>
+      <p data-reveal>Want to work together or just say hi? My inbox is open.</p>
+      <div class="cta" data-reveal="stagger">
+        <a class="btn primary" href="mailto:jshin0229@gmail.com">Email me</a>
+        <a class="btn" href="https://github.com/jshin0229">GitHub</a>
+        <a class="btn" href="https://www.linkedin.com/in/drake-shin">LinkedIn</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="wrap footer">
+    <p>© <span id="year"></span> Drake (Jongyun) Shin</p>
+    <p class="footer-links"><a href="mailto:jshin0229@gmail.com">Email</a> · <a href="https://github.com/jshin0229">GitHub</a> · <a href="https://www.linkedin.com/in/drake-shin">LinkedIn</a></p>
+  </footer>
+  <script src="site.js"></script>
+</body>
+</html>
