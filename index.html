@@ -9,8 +9,12 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+  <script>document.documentElement.classList.add('js')</script>
 </head>
 <body>
+  <div class="progress" aria-hidden="true"></div>
+  <div class="blob b1" aria-hidden="true"></div>
+  <div class="blob b2" aria-hidden="true"></div>
   <header class="nav">
     <div class="wrap nav-inner">
       <a href="#top" class="logo">jshin<span>.</span></a>
@@ -26,10 +30,10 @@
   <main id="top">
     <!-- HERO: edit your name and tagline here -->
     <section class="hero wrap">
-      <p class="kicker">Hi, I'm</p>
-      <h1>J. Shin</h1>
-      <p class="tagline">I build things for the web. <span class="muted">(Replace this with your one-line tagline.)</span></p>
-      <div class="cta">
+      <p class="kicker intro" style="--d:0">Hi, I'm</p>
+      <h1 class="intro" style="--d:1"><span class="split">J. Shin</span></h1>
+      <p class="tagline intro" style="--d:2">I build things for the web. <span class="muted">(Replace this with your one-line tagline.)</span></p>
+      <div class="cta intro" style="--d:3">
         <a class="btn primary" href="#projects">See my work</a>
         <a class="btn" href="#contact">Get in touch</a>
       </div>
@@ -37,13 +41,13 @@
 
     <!-- ABOUT -->
     <section id="about" class="wrap section">
-      <h2><span class="num">01</span> About</h2>
+      <h2 data-reveal><span class="num">01</span> About</h2>
       <div class="about-grid">
-        <div>
+        <div data-reveal="left">
           <p>Write two to four sentences about yourself here: what you do, what you're interested in, and what you're working toward.</p>
           <p>You can add a second paragraph about your background, school, or what you're looking for (internships, freelance work, collaborations).</p>
         </div>
-        <ul class="skills">
+        <ul class="skills" data-reveal="stagger">
           <li>HTML &amp; CSS</li>
           <li>JavaScript</li>
           <li>Python</li>
@@ -56,8 +60,8 @@
 
     <!-- PROJECTS: copy a <article class="card"> block to add more -->
     <section id="projects" class="wrap section">
-      <h2><span class="num">02</span> Projects</h2>
-      <div class="grid">
+      <h2 data-reveal><span class="num">02</span> Projects</h2>
+      <div class="grid" data-reveal="stagger">
         <article class="card">
           <h3>Project One</h3>
           <p>A short description of what this project does and why you built it.</p>
@@ -81,9 +85,9 @@
 
     <!-- CONTACT -->
     <section id="contact" class="wrap section contact">
-      <h2><span class="num">03</span> Contact</h2>
-      <p>Want to work together or just say hi? My inbox is open.</p>
-      <div class="cta">
+      <h2 data-reveal><span class="num">03</span> Contact</h2>
+      <p data-reveal>Want to work together or just say hi? My inbox is open.</p>
+      <div class="cta" data-reveal="stagger">
         <a class="btn primary" href="mailto:you@example.com">Email me</a>
         <a class="btn" href="https://github.com/jshin0229">GitHub</a>
         <a class="btn" href="https://www.linkedin.com/">LinkedIn</a>
@@ -104,6 +108,48 @@
       root.dataset.theme = dark ? 'light' : 'dark';
       try { localStorage.setItem('theme', root.dataset.theme); } catch (e) {}
     });
+    // Split the big name into letters so they can animate one by one
+    document.querySelectorAll('.split').forEach(el => {
+      const text = el.textContent; el.textContent = ''; el.setAttribute('aria-label', text);
+      [...text].forEach((ch, i) => {
+        const s = document.createElement('span');
+        s.className = 'ch'; s.setAttribute('aria-hidden', 'true');
+        s.style.setProperty('--i', i); s.textContent = ch === ' ' ? '\u00a0' : ch;
+        el.appendChild(s);
+      });
+    });
+
+    // Give children of stagger groups an index for delayed animation
+    document.querySelectorAll('[data-reveal="stagger"]').forEach(g =>
+      [...g.children].forEach((c, i) => c.style.setProperty('--i', i)));
+
+    // Reveal elements when they scroll into view
+    const io = new IntersectionObserver(entries => entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+    }), { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+    document.querySelectorAll('[data-reveal]').forEach(el => io.observe(el));
+
+    // Scroll progress bar + background parallax
+    const bar = document.querySelector('.progress');
+    const onScroll = () => {
+      const max = document.documentElement.scrollHeight - innerHeight;
+      bar.style.transform = `scaleX(${max > 0 ? scrollY / max : 0})`;
+      root.style.setProperty('--scroll', scrollY);
+    };
+    addEventListener('scroll', onScroll, { passive: true }); onScroll();
+
+    // 3D tilt on project cards following the mouse
+    if (matchMedia('(hover: hover) and (prefers-reduced-motion: no-preference)').matches) {
+      document.querySelectorAll('.card').forEach(card => {
+        card.addEventListener('pointermove', e => {
+          const r = card.getBoundingClientRect();
+          const x = (e.clientX - r.left) / r.width - 0.5, y = (e.clientY - r.top) / r.height - 0.5;
+          card.style.setProperty('--rx', `${-y * 10}deg`); card.style.setProperty('--ry', `${x * 10}deg`);
+          card.style.setProperty('--mx', `${(x + 0.5) * 100}%`); card.style.setProperty('--my', `${(y + 0.5) * 100}%`);
+        });
+        card.addEventListener('pointerleave', () => { card.style.setProperty('--rx', '0deg'); card.style.setProperty('--ry', '0deg'); });
+      });
+    }
   </script>
 </body>
 </html>
