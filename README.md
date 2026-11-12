@@ -23,4 +23,4 @@ python scripts/build_tracker.py
 
 ## Adding a travel destination
 
-Open `travel.js`, copy one entry in `PLACES`, and change the name, flag, coordinates and note. Photos go in `images/travel/`.
+Open `travel.js`, copy one entry in `PLACES`, and change the name, flag and note. `map` must match the country name on the map (hover a country to see it). The map itself is `world-map.svg`, drawn from public-domain Natural Earth data. Photos go in `images/travel/`.

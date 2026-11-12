@@ -238,17 +238,21 @@ nav a[aria-current="page"]::after { content: ""; position: absolute; left: 0; ri
 .card[hidden] { display: none; }
 
 /* Travel */
-.map { height: 460px; border-radius: 16px; border: 1px solid var(--border); overflow: hidden; z-index: 0; }
+.world { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 16px; }
+.world svg { display: block; width: 100%; height: auto; }
+.world path { fill: var(--skeleton); stroke: var(--bg); stroke-width: .6; transition: fill .2s; }
+.world path:hover { fill: color-mix(in srgb, var(--muted) 45%, var(--skeleton)); }
+.world path.visited { fill: #f59e0b; }
+.world path.lived { fill: var(--accent); }
+.world path.lived:hover, .world path.visited:hover { filter: brightness(1.15); }
 .map-legend { display: flex; gap: 18px; margin-bottom: 12px; font-size: 14px; color: var(--muted); }
-.pin { display: inline-block; width: 12px; height: 12px; border-radius: 50%; margin-right: 6px; vertical-align: -1px; }
-.pin.lived, .map-pin.lived { background: var(--accent); }
-.pin.visited, .map-pin.visited { background: #f59e0b; }
-.map-pin { display: grid; place-items: center; width: 34px; height: 34px; border-radius: 50%; border: 3px solid #fff; box-shadow: 0 2px 8px rgba(0,0,0,.3); font-size: 16px; }
+.pin { display: inline-block; width: 12px; height: 12px; border-radius: 3px; margin-right: 6px; vertical-align: -1px; }
+.pin.lived { background: var(--accent); }
+.pin.visited { background: #f59e0b; }
 .trip-top { height: 120px; margin: -24px -24px 6px; border-radius: 14px 14px 0 0; background: linear-gradient(135deg, color-mix(in srgb, var(--accent) 35%, var(--surface)), color-mix(in srgb, #a855f7 25%, var(--surface)));
   background-size: cover; background-position: center; display: grid; place-items: center; }
 .trip.visited .trip-top { background-image: linear-gradient(135deg, color-mix(in srgb, #f59e0b 35%, var(--surface)), color-mix(in srgb, #ec4899 25%, var(--surface))); }
 .trip-flag { font-size: 48px; }
-.leaflet-popup-content { font-family: Inter, system-ui, sans-serif; }
 
 /* Charts (tracker). Series colors: validated reference palette, light and dark steps */
 .viz-root { --surface-1: #fcfcfb; --text-primary: #0b0b0b; --text-secondary: #52514e; --grid: rgba(0,0,0,.07); --grid-strong: rgba(0,0,0,.25);
@@ -316,7 +320,6 @@ nav a[aria-current="page"]::after { content: ""; position: absolute; left: 0; ri
   .tile { padding: 14px; min-height: 100px; }
   .tile-v { font-size: 20px; }
   .chart-box { height: 260px; } .chart-box.tall { height: 300px; }
-  .map { height: 340px; }
 }
 .risk-tables { display: flex; flex-direction: column; gap: 16px; }
 .risk-tables .table-wrap { margin-top: 0; }
