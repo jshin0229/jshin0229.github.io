@@ -6,6 +6,7 @@ It re-computes, on fresh prices, the signals from three of my projects:
 - signal-backtester:            SPY 50/200-day moving-average trend signal
 - systematic-strategy-research: time-series momentum, dual momentum, sector rotation, risk parity
 - portfolio-risk-report:        risk snapshot of the example tech-tilted portfolio
+- canton-coin-short-thesis:     CC-PERP price, funding and open interest vs the short's targets (Hyperliquid)
 
 The rules are the same as in those repos: monthly strategies rebalance at month end and
 hold the weights through the next month, with 5 bps cost per dollar traded.
@@ -190,6 +191,50 @@ def risk_snapshot(px):
     }
 
 
+# ---------- canton-coin-short-thesis: track the short on Hyperliquid ----------
+HL = "https://api.hyperliquid.xyz/info"
+CANTON = {"reference": 0.090264, "reference_date": "2026-11-09", "base": 0.061, "full": 0.044, "cover": 0.122,
+          "chart_start": "2026-08-01"}
+
+
+def hl_post(body, post=None):
+    import requests
+    post = post or (lambda b: requests.post(HL, json=b, timeout=20).json())
+    return post(body)
+
+
+def canton_short(post=None):
+    """Price, funding and open interest for CC-PERP, and the short's P&L vs the proposal's targets.
+    Returns None (and the page hides the section) if Hyperliquid can't be reached."""
+    try:
+        meta, ctxs = hl_post({"type": "metaAndAssetCtxs"}, post)
+        names = [u["name"] for u in meta["universe"]]
+        ctx = ctxs[names.index("CC")]
+        mark = float(ctx["markPx"])
+        start = int(pd.Timestamp(CANTON["chart_start"], tz="UTC").timestamp() * 1000)
+        end = int(pd.Timestamp.now(tz="UTC").timestamp() * 1000)
+        candles = hl_post({"type": "candleSnapshot", "req": {"coin": "CC", "interval": "1d", "startTime": start, "endTime": end}}, post)
+        days = [pd.Timestamp(int(c["t"]), unit="ms").strftime("%Y-%m-%d") for c in candles]
+        closes = [float(c["c"]) for c in candles]
+        ref = CANTON["reference"]
+        return {
+            "mark": r(mark, 5),
+            "prev_day": r(float(ctx["prevDayPx"]), 5),
+            "funding_ann": r(float(ctx["funding"]) * 24 * 365),
+            "open_interest_usd": r(float(ctx["openInterest"]) * mark, 0),
+            "volume_24h_usd": r(float(ctx["dayNtlVlm"]), 0),
+            "short_pnl": r((ref - mark) / ref),          # short return since the reference price
+            "to_base": r(CANTON["base"] / mark - 1),     # further move needed to reach each level
+            "to_full": r(CANTON["full"] / mark - 1),
+            "to_cover": r(CANTON["cover"] / mark - 1),
+            "levels": {k: CANTON[k] for k in ("reference", "reference_date", "base", "full", "cover")},
+            "series": {"dates": days, "close": [r(c, 5) for c in closes]},
+        }
+    except Exception as e:  # never let this break the rest of the tracker
+        print(f"Canton section skipped: {e!r}")
+        return None
+
+
 def main():
     px = download()
     data = {
@@ -198,6 +243,7 @@ def main():
         "spy_trend": spy_trend(px),
         "strategies": monthly_strategies(px),
         "risk": risk_snapshot(px),
+        "canton": canton_short(),
     }
     OUT.parent.mkdir(exist_ok=True)
     OUT.write_text(json.dumps(data, separators=(",", ":")))

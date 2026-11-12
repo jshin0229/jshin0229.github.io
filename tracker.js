@@ -157,7 +157,37 @@
     setupReveal(document.getElementById('holdings').parentElement);
   }
 
-  function renderCharts() { trendChart(); perfChart(); riskChart(); tables(); }
+
+  function canton() {
+    const c = DATA.canton;
+    const sec = document.getElementById('canton-section');
+    if (!c) { sec.hidden = true; return; }
+    sec.hidden = false;
+    const L = c.levels, px = v => '$' + Number(v).toFixed(4);
+    const tiles = [
+      ['CC-PERP price', px(c.mark), `${fmtPct(c.mark / c.prev_day - 1, 1, true)} in 24h`, ''],
+      [`Short P&L since ${L.reference_date}`, fmtPct(c.short_pnl, 1, true), `Entry reference ${px(L.reference)}`, c.short_pnl >= 0 ? 'up' : 'down'],
+      ['Distance to targets', `${fmtPct(c.to_base, 0)} / ${fmtPct(c.to_full, 0)}`, `Base ${px(L.base)} · fully priced ${px(L.full)}`, ''],
+      ['Funding (annualized)', fmtPct(c.funding_ann, 1, true), `${c.funding_ann >= 0 ? 'Shorts are paid' : 'Shorts pay'} · OI $${(c.open_interest_usd / 1e6).toFixed(1)}M`, c.funding_ann >= 0 ? 'up' : 'down'],
+    ];
+    document.getElementById('canton-tiles').innerHTML = tiles.map(([k, v, sub, cls]) =>
+      `<div class="tile"><p class="tile-k">${k}</p><p class="tile-v ${cls}">${v}</p><p class="tile-sub">${sub}</p></div>`).join('');
+    const s = c.series, flat = v => s.dates.map(() => v);
+    const items = [['CC price (daily close)', css('--series-1')], [`Cover ${px(L.cover)}`, css('--series-2'), true],
+                   [`Entry ${px(L.reference)}`, css('--ink-series'), true], [`Base target ${px(L.base)}`, css('--series-3'), true],
+                   [`Fully priced ${px(L.full)}`, css('--series-5'), true]];
+    legend(document.getElementById('canton-legend'), items);
+    const opts = baseOptions({ yFmt: v => '$' + Number(v).toFixed(3) });
+    opts.plugins.tooltip.filter = t => t.datasetIndex === 0;
+    draw('canton-chart', { type: 'line', data: { labels: s.dates, datasets: [
+      { label: 'CC', data: s.close, borderColor: items[0][1] },
+      ...[L.cover, L.reference, L.base, L.full].map((v, i) => ({ label: items[i + 1][0], data: flat(v), borderColor: items[i + 1][1],
+        borderDash: [5, 4], borderWidth: 1.5, pointHoverRadius: 0 })),
+    ] }, options: opts });
+    setupReveal(sec);
+  }
+
+  function renderCharts() { trendChart(); perfChart(); riskChart(); tables(); canton(); }
 
   document.querySelectorAll('.seg button').forEach(b => b.addEventListener('click', () => {
     document.querySelectorAll('.seg button').forEach(x => x.classList.toggle('active', x === b));
