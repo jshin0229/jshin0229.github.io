@@ -123,9 +123,11 @@
     document.querySelectorAll('[data-reveal="stagger"]').forEach(g =>
       [...g.children].forEach((c, i) => c.style.setProperty('--i', i)));
 
-    // Reveal elements when they scroll into view
+    // Animate elements in when they enter the screen and back out when they leave
+    // (works scrolling both down and up)
     const io = new IntersectionObserver(entries => entries.forEach(e => {
-      if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+      e.target.classList.toggle('in', e.isIntersecting);
+      if (!e.isIntersecting) e.target.classList.toggle('above', e.boundingClientRect.top < 0);
     }), { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
     document.querySelectorAll('[data-reveal]').forEach(el => io.observe(el));
 

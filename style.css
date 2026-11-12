@@ -161,3 +161,12 @@ h2::after {
   h2::after { transform: scaleX(1); }
   .blob { translate: none; }
 }
+
+/* Elements that scrolled off the top leave upward, so scrolling back up
+   brings them down into place (mirrors the scroll direction) */
+.js [data-reveal].above:not(.in) { transform: translateY(-40px); }
+.js [data-reveal="left"].above:not(.in) { transform: translateX(-50px); }
+.js [data-reveal="stagger"].above:not(.in) { transform: none; }
+.js [data-reveal="stagger"].above:not(.in) > * { transform: translateY(-30px) scale(.96); }
+/* Faster exit so it feels snappy, normal speed on enter */
+.js [data-reveal]:not(.in), .js [data-reveal="stagger"]:not(.in) > * { transition-duration: .45s; transition-delay: 0s; }
