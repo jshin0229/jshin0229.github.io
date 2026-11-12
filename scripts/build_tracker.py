@@ -216,11 +216,18 @@ def canton_short(post=None):
         candles = hl_post({"type": "candleSnapshot", "req": {"coin": "CC", "interval": "1d", "startTime": start, "endTime": end}}, post)
         days = [pd.Timestamp(int(c["t"]), unit="ms").strftime("%Y-%m-%d") for c in candles]
         closes = [float(c["c"]) for c in candles]
+        week_ago = int((pd.Timestamp.now(tz="UTC") - pd.Timedelta(days=7)).timestamp() * 1000)
+        hist = hl_post({"type": "fundingHistory", "coin": "CC", "startTime": week_ago}, post)
+        rates = pd.Series([float(h["fundingRate"]) for h in hist],
+                          index=pd.to_datetime([int(h["time"]) for h in hist], unit="ms", utc=True))
+        day_ago = pd.Timestamp.now(tz="UTC") - pd.Timedelta(hours=24)
         ref = CANTON["reference"]
         return {
             "mark": r(mark, 5),
             "prev_day": r(float(ctx["prevDayPx"]), 5),
-            "funding_ann": r(float(ctx["funding"]) * 24 * 365),
+            "funding_now_ann": r(float(ctx["funding"]) * 24 * 365),   # current hourly rate, annualized (noisy)
+            "funding_24h_ann": r(rates[rates.index >= day_ago].mean() * 24 * 365) if len(rates) else None,
+            "funding_7d_ann": r(rates.mean() * 24 * 365) if len(rates) else None,
             "open_interest_usd": r(float(ctx["openInterest"]) * mark, 0),
             "volume_24h_usd": r(float(ctx["dayNtlVlm"]), 0),
             "short_pnl": r((ref - mark) / ref),          # short return since the reference price

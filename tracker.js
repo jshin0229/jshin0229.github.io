@@ -168,7 +168,7 @@
       ['CC-PERP price', px(c.mark), `${fmtPct(c.mark / c.prev_day - 1, 1, true)} in 24h`, ''],
       [`Short P&L since ${L.reference_date}`, fmtPct(c.short_pnl, 1, true), `Entry reference ${px(L.reference)}`, c.short_pnl >= 0 ? 'up' : 'down'],
       ['Distance to targets', `${fmtPct(c.to_base, 0)} / ${fmtPct(c.to_full, 0)}`, `Base ${px(L.base)} · fully priced ${px(L.full)}`, ''],
-      ['Funding (annualized)', fmtPct(c.funding_ann, 1, true), `${c.funding_ann >= 0 ? 'Shorts are paid' : 'Shorts pay'} · OI $${(c.open_interest_usd / 1e6).toFixed(1)}M`, c.funding_ann >= 0 ? 'up' : 'down'],
+      ['Funding, 7-day avg (annualized)', fmtPct(c.funding_7d_ann, 1, true), `${c.funding_7d_ann >= 0 ? 'Shorts are paid' : 'Shorts pay'} · last 24h ${fmtPct(c.funding_24h_ann, 1, true)} · OI $${(c.open_interest_usd / 1e6).toFixed(1)}M`, c.funding_7d_ann >= 0 ? 'up' : 'down'],
     ];
     document.getElementById('canton-tiles').innerHTML = tiles.map(([k, v, sub, cls]) =>
       `<div class="tile"><p class="tile-k">${k}</p><p class="tile-v ${cls}">${v}</p><p class="tile-sub">${sub}</p></div>`).join('');
