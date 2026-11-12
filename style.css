@@ -170,3 +170,6 @@ h2::after {
 .js [data-reveal="stagger"].above:not(.in) > * { transform: translateY(-30px) scale(.96); }
 /* Faster exit so it feels snappy, normal speed on enter */
 .js [data-reveal]:not(.in), .js [data-reveal="stagger"]:not(.in) > * { transition-duration: .45s; transition-delay: 0s; }
+
+.kind { font-family: "JetBrains Mono", monospace; font-size: 11px !important; text-transform: uppercase; letter-spacing: .08em; color: var(--accent) !important; }
+.links { display: flex; gap: 16px; flex-wrap: wrap; }

@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>J. Shin</title>
-  <meta name="description" content="Portfolio of J. Shin — projects, about, and contact.">
+  <title>Drake (Jongyun) Shin</title>
+  <meta name="description" content="Drake (Jongyun) Shin: quantitative finance and data analysis projects.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -31,8 +31,8 @@
     <!-- HERO: edit your name and tagline here -->
     <section class="hero wrap">
       <p class="kicker intro" style="--d:0">Hi, I'm</p>
-      <h1 class="intro" style="--d:1"><span class="split">J. Shin</span></h1>
-      <p class="tagline intro" style="--d:2">I build things for the web. <span class="muted">(Replace this with your one-line tagline.)</span></p>
+      <h1 class="intro" style="--d:1"><span class="split">Drake Shin</span></h1>
+      <p class="tagline intro" style="--d:2">Jongyun Shin · Emory University. I use Python and statistics to study markets and data.</p>
       <div class="cta intro" style="--d:3">
         <a class="btn primary" href="#projects">See my work</a>
         <a class="btn" href="#contact">Get in touch</a>
@@ -44,16 +44,20 @@
       <h2 data-reveal><span class="num">01</span> About</h2>
       <div class="about-grid">
         <div data-reveal="left">
-          <p>Write two to four sentences about yourself here: what you do, what you're interested in, and what you're working toward.</p>
-          <p>You can add a second paragraph about your background, school, or what you're looking for (internships, freelance work, collaborations).</p>
+          <p>I'm Drake (Jongyun) Shin, a student at Emory University interested in quantitative finance and data science. I like taking a question, such as "does this trading strategy actually work?" or "what makes a customer unhappy?", and answering it with code and data.</p>
+          <p>My projects range from backtesting engines and portfolio risk tools to statistical analyses of sports, climate and text data, all built in Python.</p>
         </div>
         <ul class="skills" data-reveal="stagger">
-          <li>HTML &amp; CSS</li>
-          <li>JavaScript</li>
           <li>Python</li>
+          <li>pandas</li>
+          <li>NumPy</li>
+          <li>matplotlib</li>
+          <li>scikit-learn</li>
+          <li>Jupyter</li>
+          <li>Backtesting</li>
+          <li>Portfolio risk</li>
+          <li>Statistics</li>
           <li>Git &amp; GitHub</li>
-          <li>Design</li>
-          <li>Skill six</li>
         </ul>
       </div>
     </section>
@@ -63,22 +67,46 @@
       <h2 data-reveal><span class="num">02</span> Projects</h2>
       <div class="grid" data-reveal="stagger">
         <article class="card">
-          <h3>Project One</h3>
-          <p>A short description of what this project does and why you built it.</p>
-          <p class="tags">JavaScript · CSS</p>
-          <div class="links"><a href="https://github.com/jshin0229">Code ↗</a></div>
+          <p class="kind">Quant finance</p>
+          <h3>Signal Backtester</h3>
+          <p>A from-scratch Python backtesting engine with no look-ahead bias, transaction costs and risk metrics. A 50/200-day trend filter on SPY cut the worst drawdown from -55% to -34%.</p>
+          <p class="tags">Python · pandas · pytest</p>
+          <div class="links"><a href="https://github.com/jshin0229/signal-backtester">Code ↗</a></div>
         </article>
         <article class="card">
-          <h3>Project Two</h3>
-          <p>A short description of what this project does and why you built it.</p>
-          <p class="tags">Python</p>
-          <div class="links"><a href="https://github.com/jshin0229">Code ↗</a></div>
+          <p class="kind">Quant finance</p>
+          <h3>Systematic Strategy Research</h3>
+          <p>Four classic quant strategies implemented and tested on 20 years of ETF data. Time-series momentum matched the S&amp;P 500's return with a Sharpe of 0.92 and a third of its drawdown.</p>
+          <p class="tags">pandas · Jupyter · research</p>
+          <div class="links"><a href="https://github.com/jshin0229/systematic-strategy-research">Code ↗</a></div>
         </article>
         <article class="card">
-          <h3>Project Three</h3>
-          <p>A short description of what this project does and why you built it.</p>
-          <p class="tags">HTML · Design</p>
-          <div class="links"><a href="https://github.com/jshin0229">Code ↗</a></div>
+          <p class="kind">Quant finance</p>
+          <h3>Portfolio Risk Report</h3>
+          <p>Turns any list of holdings into a one-page HTML risk report: VaR, beta, risk contribution, stress tests and Monte Carlo outcomes.</p>
+          <p class="tags">Python · risk · Monte Carlo</p>
+          <div class="links"><a href="https://github.com/jshin0229/portfolio-risk-report">Code ↗</a> <a href="https://jshin0229.github.io/portfolio-risk-report/">Live demo ↗</a></div>
+        </article>
+        <article class="card">
+          <p class="kind">Data analysis</p>
+          <h3>F1 Race Analytics</h3>
+          <p>73 seasons of Formula 1 data. Since 2000, pole position wins 50% of races, and retirement rates fell from over 50% to 16%.</p>
+          <p class="tags">pandas · data viz</p>
+          <div class="links"><a href="https://github.com/jshin0229/f1-race-analytics">Code ↗</a></div>
+        </article>
+        <article class="card">
+          <p class="kind">Data analysis</p>
+          <h3>CO₂ Emissions Trends</h3>
+          <p>How the top 10 emitters changed from 1960 to 2019: who has peaked, who is still growing, and a Soviet-era data trap I had to fix.</p>
+          <p class="tags">pandas · time series</p>
+          <div class="links"><a href="https://github.com/jshin0229/co2-emissions-trends">Code ↗</a></div>
+        </article>
+        <article class="card">
+          <p class="kind">Data analysis</p>
+          <h3>Yelp Review Text Analysis</h3>
+          <p>What makes 20,000 reviews negative? Log-odds word analysis, trigrams and a classifier that catches 90% of negative reviews.</p>
+          <p class="tags">NLP · scikit-learn</p>
+          <div class="links"><a href="https://github.com/jshin0229/yelp-review-text-analysis">Code ↗</a></div>
         </article>
       </div>
     </section>
@@ -96,7 +124,7 @@
   </main>
 
   <footer class="wrap footer">
-    <p>© <span id="year"></span> J. Shin · Built with plain HTML &amp; CSS</p>
+    <p>© <span id="year"></span> Drake (Jongyun) Shin · Built with plain HTML &amp; CSS</p>
   </footer>
 
   <script>
